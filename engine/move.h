@@ -13,6 +13,7 @@ class Move
   public:
     Move (int, int);
     Move (int);
+    Move () {};
     int to_flatid();
     bool is_pass() {return option==81;};
     vector<int> to_matrix_id();
