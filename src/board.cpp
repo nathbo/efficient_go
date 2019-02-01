@@ -1,4 +1,8 @@
-#include"board.h"
+#include <iostream>
+
+#include "board.h"
+#include "move.h"
+#include "colors.h"
 
 using namespace std;
 
@@ -8,14 +12,14 @@ void Board::display()
     {
         for(int j=0; j<9; j++)
         {
-            if(board[i*9+j] == EMPTY)
+          if(board[i*9+j] == Colors::EMPTY)
                 cout<< "+" << " " ;
-            else if(board[i*9+j] == WHITE)
+            else if(board[i*9+j] == Colors::WHITE)
                 cout<< "O" << " " ;
-            else if(board[i*9+j] == BLACK)
+            else if(board[i*9+j] == Colors::BLACK)
                 cout<< "X" << " " ;
         }
-        cout<<"\n"; 
+        cout<<"\n";
     }
     cout<<"\n";
 }
@@ -25,7 +29,7 @@ vector<int> Board::get_empty_locations()
     vector<int> locations;
     for(int i=0; i<81; i++)
     {
-        if(board[i] == EMPTY){
+        if(board[i] == Colors::EMPTY){
             Move move (i);
             locations.push_back(move.to_flatid());
         }
@@ -59,14 +63,14 @@ vector<int> get_neighbor_locations(int loc)
 }
 
 void print(vector<int> vect){
-    for(int i=0; i<vect.size(); i++){
-        cout<<vect[i]<<" ";
+  for(int i: vect){
+        cout<<i<<" ";
     }
     cout<<endl;
 }
 void print(vector<vector<int>> vect){
-    for(int i=0; i<vect.size(); i++){
-        print(vect[i]);
+  for(vector<int> i: vect){
+        print(i);
     }
     cout<<endl;
 }
@@ -105,19 +109,19 @@ bool Board::check_dead(set<int> chain)
     for(auto loc: chain){
         auto neighbors = get_neighbor_locations(loc);
         for(auto n: neighbors){
-            if(board[n]==EMPTY) return 0;
+            if(board[n]==Colors::EMPTY) return 0;
         }
     }
     return 1;
 }
 
 int Board::play(Move move, int color)
-{   
+{
     if(move.is_pass()){
         if(last_move == 81)
             return 1;
     }
-    else{    
+    else{
         int loc = move.to_flatid();
         board[loc] = color;
 
@@ -125,7 +129,7 @@ int Board::play(Move move, int color)
         for(auto n: neighbors){
             set<int> group = get_group(n);
             if(check_dead(group)){
-                for(auto loc: group) board[loc] = EMPTY;
+                for(auto loc: group) board[loc] = Colors::EMPTY;
             }
         }
     }
