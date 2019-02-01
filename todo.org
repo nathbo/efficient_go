@@ -1,3 +1,6 @@
 * TODO Proper constructors for board class
 * TODO Function to playout game randomly
 * TODO Restructure go.cpp to just be a demo
+* TODO Add command line interface for the demo with args etc
+* TODO Proper style across all files
+* TODO Readme: Include timing command and statement about the command line parsing
