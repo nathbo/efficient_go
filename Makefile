@@ -21,6 +21,6 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
 
 clean:
 	@echo "Cleaning..."
-	$(RM) -r $(BUILDIR) $(TARGET)
+	$(RM) -r $(BUILDDIR) $(TARGET)
 
 .PHONY: clean

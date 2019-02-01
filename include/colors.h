@@ -1,7 +1,6 @@
 #pragma once
 
-class Colors
-{
+class Colors {
 public:
   const static int EMPTY = 0;
   const static int WHITE = -1;
